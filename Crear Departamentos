@@ -1,0 +1,4 @@
+$file_groups=Import-Csv -Path departamentos.Csv 
+foreach ($group in $file_groups) { 
+  New-LocalGroup -Name $group.departamento -Description $group.Descripcion
+}
