@@ -1,0 +1,10 @@
+net accounts /lockoutthreshold:3
+net accounts /lockoutduration:60
+net accounts /lockoutwindow:60
+net accounts /maxpwage:30
+net accounts /minpwage:2
+net accounts /minpwlen:8
+secedit /eport /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("PasswordCpmplexity = 0", "PasswordCpmplexity = 1" | Out-file C:\secpo.cfg
+secedit /configure/db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
